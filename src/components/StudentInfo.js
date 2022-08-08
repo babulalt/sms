@@ -35,8 +35,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="firstName"
-                        name="firstName"
+                        id="lastName"
+                        name="lastName"
                         label="Last Name"
                         fullWidth
                         autoComplete="given-name"
@@ -44,11 +44,11 @@ export const StudentInfo = () => {
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <FormControl sx={{ m: 0, minWidth: 170 }} size="large">
-                        <InputLabel id="demo-select-small">Gender</InputLabel>
+                    <FormControl fullWidth sx={{ m: 0 }} size="large">
+                        <InputLabel   id="demo-select-small">Gender</InputLabel>
                         <Select
-                            labelId="demo-select-small"
-                            id="demo-select-small"
+                            labelId="gender"
+                            id="gender"
                             value={age}
                             label="Gender"
                             onChange={handleChange}
@@ -65,8 +65,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="lastName"
-                        name="lastName"
+                        id="email"
+                        name="email"
                         label="Email"
                         fullWidth
                         autoComplete="family-name"
@@ -76,8 +76,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="lastName"
-                        name="lastName"
+                        id="mobileNum"
+                        name="mobileNum"
                         label="Mobile Number"
                         fullWidth
                         autoComplete="family-name"
@@ -87,8 +87,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="lastName"
-                        name="lastName"
+                        id="parentName"
+                        name="parentName"
                         label="Parent Name"
                         fullWidth
                         autoComplete="family-name"
@@ -98,8 +98,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="city"
-                        name="city"
+                        id="parentRelation"
+                        name="parentRelation"
                         label="Patent Relation"
                         fullWidth
                         autoComplete="shipping address-level2"
@@ -108,8 +108,8 @@ export const StudentInfo = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        id="state"
-                        name="state"
+                        id="parentNumber"
+                        name="parentNumber"
                         label="Parent Mobile Number"
                         fullWidth
                         variant="outlined"
@@ -118,8 +118,8 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="zip"
-                        name="zip"
+                        id="dob"
+                        name="dob"
                         label="Date of Birth"
                         fullWidth
                         autoComplete="shipping postal-code"
@@ -129,11 +129,11 @@ export const StudentInfo = () => {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="country"
-                        name="country"
+                        id="course"
+                        name="course"
                         label="Course"
                         fullWidth
-                        autoComplete="shipping country"
+                        autoComplete="course"
                         variant="outlined"
                     />
                 </Grid>
