@@ -6,7 +6,6 @@ import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AddressForm } from './AddressForm';
@@ -16,14 +15,28 @@ import { FileInfo } from './FileInfo';
 
 const steps = ['Personal Info', 'Address Info', 'File Attach'];
 
-function getStepContent(step) {
-  switch (step) {
+function getStepContent(activeStep,steps,handleBack,handleNext) {
+  switch (activeStep) {
     case 0:
-      return <StudentInfo/>;
+      return <StudentInfo
+      activeStep={activeStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
+      />;
     case 1:
-      return <AddressForm/>;
+      return <AddressForm
+      activeStep={activeStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
+      />;
     case 2:
-      return <FileInfo />;
+      return <FileInfo  
+      activeStep={activeStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps} />;
     default:
       throw new Error('Unknown step');
   }
@@ -45,7 +58,7 @@ export const Checkout=() =>{
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component="main" maxWidth="md" sx={{pt: 3, mb: 4 }}>
+      <Container component="main" maxWidth="lg" sx={{pt: 3, mb: 4 }}>
         <Paper variant="outlined" sx={{ my: {  pt: 10, xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Student Enroll Form
@@ -71,22 +84,9 @@ export const Checkout=() =>{
                 </Typography>
               </React.Fragment>
             ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
+               <React.Fragment>
+                {getStepContent(activeStep,steps,handleBack,handleNext)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
-
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
-                  </Button>
                 </Box>
               </React.Fragment>
             )}

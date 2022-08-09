@@ -8,11 +8,19 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../action/signup";
+
+
 
 
 function Copyright(props) {
@@ -30,7 +38,13 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export const SignUp=()=> {
+export const SignUp = () => {
+  const [gender, setGender] = React.useState('');
+  const dispatch = useDispatch();
+  const isSignup = useSelector((state) => state.signup.isSignup);
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,12 +52,20 @@ export const SignUp=()=> {
       email: data.get('email'),
       password: data.get('password'),
     });
-    <Navigate to="/" />
+    const datasignupRequest = {
+      firstname: 'apple',
+      lastname: 'appps',
+      email: 'test@gmail.com',
+      username: 'sugamlama',
+      mobile_number: 9863857035,
+      password: 'abc1234A'
+    }
+    dispatch(signUp(datasignupRequest));
   };
-
+  if (isSignup) return <Navigate to="/" />;
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -96,6 +118,28 @@ export const SignUp=()=> {
                 <TextField
                   required
                   fullWidth
+                  name="mobile"
+                  label="Mobile Number"
+                  type="text"
+                  id="mobile_num"
+                  autoComplete="mobile_num"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="username"
+                  label="Username"
+                  type="text"
+                  id="username"
+                  autoComplete="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -104,9 +148,28 @@ export const SignUp=()=> {
                 />
               </Grid>
               <Grid item xs={12}>
+                <FormControl fullWidth sx={{ m: 0 }} size="medium">
+                  <InputLabel id="demo-select-small">Role</InputLabel>
+                  <Select
+                    labelId="role"
+                    id="role"
+                    value={gender}
+                    label="Select Role"
+                    onChange={handleGenderChange}
+                  >
+                    <MenuItem value="select">
+                      <em>Select Role</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Student</MenuItem>
+                    <MenuItem value={20}>Teacher</MenuItem>
+                    <MenuItem value={30}>Guest</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I accept the terms of use."
                 />
               </Grid>
             </Grid>
